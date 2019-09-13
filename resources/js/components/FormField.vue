@@ -132,7 +132,9 @@
                         })
                     }
                     catch(err) {
+                        console.log('============')
                         console.log(err.message)
+                        console.log('============')
                     }
                 }
 
