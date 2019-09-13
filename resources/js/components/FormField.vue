@@ -118,18 +118,22 @@
                 {
                     this.fileName = this.file.name
                     this.fileType = this.file.type
-                    Vapor.store(this.file, {
-                        progress: progress => {
-                            this.uploadProgress = Math.round(progress * 100);
-                        }
-                    }).then(response => {
-                        console.log('pushed');
-                        this.fileData.uuid = response.uuid
-                        this.fileData.key = response.key
-                        this.fileData.bucket = response.bucket
-                    }).catch(error => {
-                        console.log('died');
-                    });
+
+                    try {
+                        Vapor.store(this.file, {
+                            progress: progress => {
+                                this.uploadProgress = Math.round(progress * 100);
+                            }
+                        }).then(response => {
+                            console.log('pushed');
+                            this.fileData.uuid = response.uuid
+                            this.fileData.key = response.key
+                            this.fileData.bucket = response.bucket
+                        })
+                    }
+                    catch(err) {
+                        console.log(err.message)
+                    }
                 }
 
             },
