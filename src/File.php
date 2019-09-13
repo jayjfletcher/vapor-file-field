@@ -33,8 +33,6 @@ class File extends BaseFile
      */
     protected function fillAttribute(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        dump($request->input());
-        die();
         if (!$request->input($this->attribute.'.uuid')) {
             return;
         }
